@@ -23,7 +23,7 @@ git clone https://github.com/rokkieluo/rk-yolo26.git
 以目标检测为例：
 
 ```bash
-python export-onnx.py det ./weights/yolo26s.pt ./weights/yolov26s.onnx
+python export-onnx-rknn.py det ./weights/yolo26s.pt ./weights/yolov26s.onnx
 ```
 
 其他模型依次类推
