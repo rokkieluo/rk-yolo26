@@ -295,20 +295,29 @@ class Model(torch.nn.Module):
 
         # 如果要训练请注释以下onnx生成代码
         print("===========  onnx =========== ")
-        import torch
         import sys
+
+        import torch
+
         model = sys.argv[1]
         output_model = sys.argv[3]
         dummy_input = torch.randn(1, 3, 640, 640)
-        if model == 'det':
+        if model == "det":
             print("===========  det-onnx start =========== ")
             input_names = ["data"]
             output_names = ["reg1", "cls1", "reg2", "cls2", "reg3", "cls3"]
-            torch.onnx.export(self.model, dummy_input, output_model, verbose=False, input_names=input_names, output_names=output_names, opset_version=11)
+            torch.onnx.export(
+                self.model,
+                dummy_input,
+                output_model,
+                verbose=False,
+                input_names=input_names,
+                output_names=output_names,
+                opset_version=11,
+            )
             print("======================== convert det-onnx Finished! ========================")
         else:
             print("Only det model supported for RKNN-ONNX export currently.")
-
 
     def _check_is_pytorch_model(self) -> None:
         """Check if the model is a PyTorch model and raise TypeError if it's not.
